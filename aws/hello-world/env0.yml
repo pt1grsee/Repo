@@ -6,7 +6,7 @@ deploy:
       before:
         - echo Replacing !!!USER!!! with $USER in index.html
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
-	- echo 'import sys' > ports.py
+	- echo 'import sys' >> ports.py
 	- echo 'import socket' >> ports.py
 	- echo 'from datetime import datetime' >> ports.py
 	- echo '' >> ports.py
