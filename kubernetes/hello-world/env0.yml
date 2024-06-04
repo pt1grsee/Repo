@@ -9,6 +9,8 @@ deploy:
         - kubectl config set-context aws --namespace=$NAMESPACE;
         - echo "$(sed 's/!!!NAMESPACE!!!/'"$NAMESPACE"'/g' namespace.yaml)" > namespace.yaml;
         - cat namespace.yaml
+        - kubectl apply -k . --prune --dry-run=server -l env0-environment-id=410c3e88-56a8-4f56-9119-b9d00adea89b --server=https://localhost:8080
+
 
 destroy:
   steps:
