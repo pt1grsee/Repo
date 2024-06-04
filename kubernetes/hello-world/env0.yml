@@ -9,6 +9,7 @@ deploy:
         - kubectl config set-context aws --namespace=$NAMESPACE;
         - echo "$(sed 's/!!!NAMESPACE!!!/'"$NAMESPACE"'/g' namespace.yaml)" > namespace.yaml;
         - cat namespace.yaml
+        - kubectl get svc
 
 
 destroy:
