@@ -6,4 +6,4 @@ deploy:
       before:
         - echo TF_VAR_email=user@domain.com >> $ENV0_ENV
         - name: Open Policy Agent
-          use: https://github.com/env0/env0-opa-plugin
+use: https://github.com/env0/env0-opa-plugin
